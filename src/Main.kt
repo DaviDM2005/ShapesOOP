@@ -1,62 +1,49 @@
-import kotlin.math.PI
+import kotlin.math.PI  // Import PI for mathematical calculations
+import kotlin.properties.ReadOnlyProperty
 
-class Circle(val radius: Double) {
-
-    fun area(): Double {
-
-        return PI * radius * radius
-    }
-
-    fun perimeter(): Double {
-        return 2 * PI * radius
-    }
+abstract class Shape {
+    abstract val area: Double
+    abstract val perimeter: Double
 }
 
-class rectangle(
-    val width: Double,
-    val height: Double
-){
+class Circle(val radius: Double) : Shape() {
+    override val area: Double
+        get() = PI * radius * radius
 
-    fun area(): Double{
-        return width*height
-    }
-
-    fun perimeter(): Double{
-        return 2*(width*height)
-    }
+    override val perimeter: Double
+        get() = 2 * PI * radius
 }
 
-class square(
-    val side: Double
-){
+class Rectangle(val width: Double, val height: Double) : Shape() {
+    override val area: Double
+        get() = width * height
 
-    fun area(): Double{
-        return side*side
-    }
+    override val perimeter: Double
+        get() = 2 * (width + height)
+}
 
-    fun perimeter(): Double{
-        return 2*(side*side)
-    }
+class Square(val sideLength: Double) : Shape() {
+    override val area: Double
+        get() = sideLength * sideLength
+
+    override val perimeter: Double
+        get() = 2 * (sideLength + sideLength)
 }
 
 
 
-fun main(){
+fun main() {
+    // Example usage:
+    val circle = Circle(5.0)
+    println("Circle area: ${circle.area}")
+    println("Circle perimeter: ${circle.perimeter}")
 
-    var circle = Circle(4.5)
-    var rectangle = rectangle(3.4, 8.0)
-    var square = square(5.5)
 
-    // Circle area and perimeter
-    println(circle.area())
-    println(circle.perimeter())
+    val Rectangle = Rectangle(3.4,5.4)
+    println("Reactangle area: ${Rectangle.area}")
+    println("Reactangle perimeter: ${Rectangle.perimeter}")
 
-    // Rectangle area and perimeter
-    println(rectangle.area())
-    println(rectangle.perimeter())
-
-    // Square area and perimeter
-    println(square.area())
-    println(square.perimeter())
-
+    val Square = Square(3.4)
+    println("Square area: ${Square.area}")
+    println("Square perimeter: ${Square.perimeter}")
 }
